@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="bg-zinc-900 m-0 p-0 h-screen w-full text-white p-4">
+        <div class="ml-8 mt-5">
+            <a href="/api/v1/user/" class="text-blue-600 inline-block mb-3">Back to home</a>
+            <h1 class="text-3xl font-bold">All Users</h1>
+            <div class="mt-5 flex flex-wrap gap-3">
+                <% if(users.length > 0){ %>
+                  <%  users.forEach((user) => { %>
+                        <div class="w-62 bg-zinc-800 p-3 rounded-md">
+                    <div class="h-50 w-56 bg-zinc-300 rounded-md overflow-hidden">
+                        <img src="<%= user.image %>" alt="" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="tracking-tighter text-xl font-semibold mt-2"><%= user.name %></h2>
+                    <h3 class="tracking-tighter text-zinc-500"><%= user.email %></h3>
+                    <h3 class="tracking-tighter font-light text-zinc-400"><%= user.phone %></h3>
+                    <div class="flex gap-3 mt-3">
+                      <a href="/api/v1/user/update/<%= user._id%>" class="font-light text-blue-600">Edit</a>
+                      <a href="/api/v1/user/delete/<%= user._id%>" class="font-light text-red-500">delete</a>
+                    </div>
+                </div>
+                  <%  }) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
